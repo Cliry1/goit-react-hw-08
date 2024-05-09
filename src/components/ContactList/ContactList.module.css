@@ -1,0 +1,17 @@
+.ul{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 0;
+
+}
+
+.li{
+  padding: 12px;
+  display: flex;
+  border: 1px solid;
+  justify-content: space-between;
+  border-radius: 6px;
+  align-items: center;
+  width: 280px;
+}

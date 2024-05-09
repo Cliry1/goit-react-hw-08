@@ -1,0 +1,27 @@
+.form{
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  gap: 20px;
+  border: 1px solid black;
+  padding: 16px;
+  border-radius: 4px;
+}
+.formContainer{
+  display: flex;
+  flex-direction: column;
+}
+.error{
+  color: red;
+}
+
+.input{
+  border-radius: 3px;
+  outline: transparent;
+  border: black 1px solid;
+  }
+  
+  .input:hover, .input:focus{
+  outline: rgb(103, 103, 238) 2px solid;
+  border:1px solid transparent;
+  }

@@ -1,0 +1,20 @@
+.container{
+  margin-top: 12px;
+  margin-bottom: 18px;
+}
+.text{
+margin: 0;
+}
+.input{
+width: 328px;
+padding: 4px ;
+border-radius: 3px;
+outline: transparent;
+border: black 1px solid;
+}
+
+
+.input:hover, .input:focus{
+outline: rgb(103, 103, 238) 2px solid;
+border:1px solid transparent;
+}

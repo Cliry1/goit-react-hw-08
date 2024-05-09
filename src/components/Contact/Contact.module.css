@@ -1,0 +1,18 @@
+.button{
+  height: 30px;
+  width: 70px;
+
+}
+.containerBig{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.containerSmall{
+ display: flex;
+ flex-direction: row;
+ gap: 12px;
+}
+.p{
+  margin: 0;
+}
