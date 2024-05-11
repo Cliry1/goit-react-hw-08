@@ -1,6 +1,5 @@
-import { createSlice,createSelector } from "@reduxjs/toolkit";
-import { selectNameFilter } from "./filtersSlice";
-import { fetchContacts, addContact, deleteContacts } from "./contactsOps";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchContacts, addContact, deleteContacts } from "./operations";
 const handlePending = (state)=>{
   state.loading = true;
 }
@@ -44,9 +43,3 @@ const contactsSlice = createSlice({
 
 
 export const contactsReducer = contactsSlice.reducer;
-export const selectContacts = state=> state.contacts.items;
-export const selectFilteredContacts = createSelector([selectContacts, selectNameFilter], (tasks, filter)=>{
-  return tasks.filter((contact)=>contact.name.toLowerCase().includes(filter.toLowerCase()))
-} )
-export const selectIsLoading = state=>state.contacts.loading;
-export const selectError = state=>state.contacts.error;

@@ -1,0 +1,12 @@
+.container{
+  display: flex;
+  gap: 40px;
+}
+.button{
+  margin: auto;
+  cursor: pointer;
+
+}
+.text{
+  margin: 0;
+}

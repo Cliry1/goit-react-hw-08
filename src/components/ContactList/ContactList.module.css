@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   gap: 40px;
   padding: 0;
-
+justify-content: center;
 }
 
 .li{
@@ -13,5 +13,5 @@
   justify-content: space-between;
   border-radius: 6px;
   align-items: center;
-  width: 280px;
+  width: 250px;
 }

@@ -1,0 +1,24 @@
+.form{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 350px;
+  gap: 15px;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.button{
+  margin: auto;
+  width: 120px;
+  height: 30px;
+  background-color: rgb(157, 157, 255);
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+}
+
+.button:hover,.button:focus{
+  background-color: rgb(110, 110, 251);
+}

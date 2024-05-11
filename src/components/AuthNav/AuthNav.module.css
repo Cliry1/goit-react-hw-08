@@ -1,0 +1,18 @@
+.container{
+  display: flex;
+  gap: 25px;
+
+}
+.register{
+  text-decoration: none;
+  color: black;
+}
+.login{
+  text-decoration: none;
+  color: black;
+}
+.login:hover,.register:hover,
+.login:focus,.register:focus{
+  color: rgb(106, 57, 254);
+}
+

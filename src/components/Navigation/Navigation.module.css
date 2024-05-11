@@ -1,0 +1,20 @@
+.home{
+  text-decoration: none;
+  color: black;
+}
+
+.container{
+  display: flex;
+  gap: 25px;
+
+}
+.contacts{
+  text-decoration: none;
+  color: black;
+}
+
+.contacts:hover,.home:hover,
+.contacts:focus,.home:focus{
+  color: rgb(106, 57, 254);
+}
+
