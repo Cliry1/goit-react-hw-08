@@ -18,17 +18,16 @@ const authSlice = createSlice({
     .addCase(login.fulfilled, (state, action) =>{
       state.user = action.payload.user;
       state.isLoggedIn= true;
-      state.token = action.payload.token;
+      state.token = action.payload.accessToken;
     })
     .addCase(logout.fulfilled, (state)=>{
-      state.user = {name:null,email:null};
       state.isLoggedIn= false;
       state.token = null;
     })
     .addCase(register.fulfilled, (state, action)=>{
       state.user = action.payload.user;
       state.isLoggedIn= true;
-      state.token = action.payload.token;
+      state.token = action.payload.accessToken;
     })
     .addCase(refreshUser.pending, state=>{
       state.isRefreshing=true;

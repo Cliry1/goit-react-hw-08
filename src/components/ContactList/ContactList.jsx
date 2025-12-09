@@ -13,7 +13,7 @@ const visibleContacts = useSelector(selectFilteredContacts);
     <ul className={css.ul}>
       {
         visibleContacts.map((contact)=>(
-          <li key={contact.id} className={css.li}>
+          <li key={contact._id} className={css.li}>
               <Contact contact={contact}/>
           </li>
           

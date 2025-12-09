@@ -18,7 +18,8 @@ export const RegistrationForm = ()=>{
       register(values)
     )
     .unwrap()
-    .catch(() => toast.error('This email is already taken'));
+    .then(() => toast.success('Registration successful.'))
+    .catch(() => toast.error('Registration failed. Please try again.'));
     actions.resetForm();
   }
   return (
