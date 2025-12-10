@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, logout, register, refreshUser } from "./operations";
+import { login, logout, register, refreshUser, oauthLoginWithGoogle } from "./operations";
 
 const authSlice = createSlice({
   name:"auth",
@@ -38,6 +38,18 @@ const authSlice = createSlice({
       state.isRefreshing=false;
     })
     .addCase(refreshUser.rejected, state=>{
+      state.isRefreshing=false;
+    })
+    .addCase(oauthLoginWithGoogle.pending,state=>{
+      state.isRefreshing=true;
+    })
+    .addCase(oauthLoginWithGoogle.fulfilled,(state,action)=>{
+      state.user = action.payload.user;
+      state.isLoggedIn= true;
+      state.token = action.payload.accessToken;
+      state.isRefreshing=false;
+    })
+    .addCase(oauthLoginWithGoogle.rejected,state=>{
       state.isRefreshing=false;
     })
   }

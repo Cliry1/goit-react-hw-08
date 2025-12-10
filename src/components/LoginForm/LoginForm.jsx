@@ -3,7 +3,9 @@ import { useDispatch } from "react-redux"
 import { login } from "../../redux/auth/operations"
 import { Field, Formik,Form } from "formik"
 import toast, { Toaster } from 'react-hot-toast';
-
+import {OAuthButton} from '../OAuthButton/OAuthButton'
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebookF } from "react-icons/fa";
 export const LoginForm = ()=>{
   const dispatch = useDispatch();
   const handleSubmit = (values,action)=>{
@@ -27,6 +29,10 @@ export const LoginForm = ()=>{
           <Field  type="password" name="password" id="password"/>
         </div>
         <button className={css.button} type="submit">Log In</button>
+
+        <hr className={css.line}/>
+        <OAuthButton type={"google"} svg={FcGoogle}>Login with Google</OAuthButton>
+        <OAuthButton type={"facebook"} svg={FaFacebookF}>Login with Facebook</OAuthButton>
       </Form>
     </Formik>
     <Toaster />

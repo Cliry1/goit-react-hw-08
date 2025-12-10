@@ -63,3 +63,16 @@ export const refreshUser = createAsyncThunk("auth/refresh",
     }
   }
 )
+
+
+export const oauthLoginWithGoogle = createAsyncThunk("auth/loginWithGoogle",
+  async(code, thunkAPI)=>{
+    try {
+      const response = await axios.post("/auth/confirm-oauth",{code});
+      setAuthHeader(response.data.data.accessToken);
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message)
+    }
+  }
+)

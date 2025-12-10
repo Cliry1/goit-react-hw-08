@@ -2,13 +2,12 @@ import css from "./Contact.module.css";
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { deleteContacts } from "../../redux/contacts/operations";
+import { openModal } from "../../redux/modal/slice";
 
 
 export default function Contact({contact}) {
   const dispatch = useDispatch();
-  const handleDelete = () => {dispatch(deleteContacts(contact._id));
-  };
+
   return (
     <>
       <div className={css.containerBig}>
@@ -22,7 +21,7 @@ export default function Contact({contact}) {
         </div>
 
       </div>
-      <button className={css.button} onClick={handleDelete}>Delete</button>
+      <button className={css.button} onClick={()=>dispatch(openModal({type:"CONFIRM_DELETE",  props: { id: contact._id }}))}>Delete</button>
     </>
   );
 }

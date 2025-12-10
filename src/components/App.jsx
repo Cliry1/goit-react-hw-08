@@ -1,12 +1,12 @@
 import { useEffect, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from '../redux/auth/selectors';
-import { refreshUser } from '../redux/auth/operations';
+import { oauthLoginWithGoogle, refreshUser } from '../redux/auth/operations';
 import { Layout } from './Layout';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { Route, Routes } from 'react-router-dom';
-
+import { OAuthHandler } from './OAuthHandler'
 const HomePage = lazy(()=>import('../pages/HomePage'))
 const RegistrationPage = lazy(()=>import('../pages/RegistrationPage'))
 const LoginPage = lazy(()=>import('../pages/LoginPage'))
@@ -29,6 +29,7 @@ export default function App() {
         <Route path='/register' element={<RestrictedRoute redirectTo="/contacts" component={<RegistrationPage/>}/>}/>
         <Route path='/login' element={<RestrictedRoute redirectTo="/contacts" component={<LoginPage/>}/>}/>
         <Route path='/contacts' element={<PrivateRoute redirectTo="/login" component={<ContactsPage/>}/>}/>
+        <Route path="/confirm-google-auth" element={<OAuthHandler callback={oauthLoginWithGoogle}/>} />
       </Routes>
     </Layout>
   )

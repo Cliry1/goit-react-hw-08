@@ -22,3 +22,12 @@
 .button:hover,.button:focus{
   background-color: rgb(110, 110, 251);
 }
+
+
+.line {
+  border: none;        
+  height: 1px;           
+  background: gray;
+  margin:10px 0;
+
+}
