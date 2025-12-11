@@ -18,7 +18,6 @@ export const OAuthHandler = ({callback}) => {
         dispatch(callback(code))
         navigate("/dashboard"); 
       } catch (err) {
-        console.error(err);
         navigate("/login");
       }
     };
