@@ -17,7 +17,7 @@ export const fetchWithRefresh = async (thunkAPI, callback) => {
   try {
     return await callback();
   } catch (error) {
-    if (error.response?.status === 401 && error.response?.data?.data?.message === "Access token expired") {
+    if (error.response?.status === 401 && error.response?.data?.data?.message === "Access token expired" ) {
       try {
         await thunkAPI.dispatch(refreshToken());
         const state = thunkAPI.getState();
@@ -75,9 +75,7 @@ export const login = createAsyncThunk("auth/login",
 export const logout = createAsyncThunk("auth/logout",
   async(_, thunkAPI)=>{
     try {
-      await axios.post("/auth/logout",{} ,{
-  withCredentials: true 
-})
+      await axios.post("/auth/logout",{} ,{withCredentials: true })
       clearAuthHeader();
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message)
@@ -98,8 +96,8 @@ export const refreshUser = createAsyncThunk( 'auth/refresh',
   {
     condition: (_, thunkAPI) => {
       const state = thunkAPI.getState();
-      if (!state.auth.token) return false;
-      if (state.auth.isRefreshing) return false;
+      if (!state.auth.token) return false; 
+      if (state.auth.isRefreshing) return false; 
       return true;
     }
   }
@@ -111,7 +109,7 @@ export const refreshUser = createAsyncThunk( 'auth/refresh',
 export const oauthLoginWithGoogle = createAsyncThunk("auth/loginWithGoogle",
   async(code, thunkAPI)=>{
     try {
-      const response = await axios.post("/auth/confirm-oauth",{code});
+      const response = await axios.post("/auth/confirm-oauth-google",{code}, { withCredentials: true });
       setAuthHeader(response.data.data.accessToken);
       return response.data.data;
     } catch (error) {
@@ -120,3 +118,37 @@ export const oauthLoginWithGoogle = createAsyncThunk("auth/loginWithGoogle",
   }
 )
 
+export const oauthLoginWithGithub = createAsyncThunk("auth/loginWithGithub",
+  async(code, thunkAPI)=>{
+    try {
+      const response = await axios.post("/auth/confirm-oauth-github", {code}, { withCredentials: true });
+      setAuthHeader(response.data.data.accessToken);
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message)
+    }
+  }
+)
+
+
+export const resetPassword = createAsyncThunk("auth/resetPassword",
+  async({token,password}, thunkAPI)=>{
+    try {
+      await axios.post("/auth/reset-pwd",{token,password}, { withCredentials: true });
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message)
+    }
+  }
+)
+
+
+export const sendResetPasswordEmail = createAsyncThunk("auth/sendResetPasswordEmail",
+  async(email, thunkAPI)=>{
+    try {
+      const {data} = await axios.post("/auth/send-reset-email",{email});
+      return data ;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message)
+    }
+  }
+)

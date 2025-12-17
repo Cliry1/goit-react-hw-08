@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, logout, register, refreshUser, oauthLoginWithGoogle, refreshToken } from "./operations";
+import { login, logout, register, refreshUser, oauthLoginWithGoogle, refreshToken, oauthLoginWithGithub, sendResetPasswordEmail } from "./operations";
 
 const authSlice = createSlice({
   name:"auth",
@@ -61,6 +61,24 @@ const authSlice = createSlice({
       state.token = action.payload.accessToken;
     })
     .addCase(refreshToken.rejected, state=>{
+      state.isRefreshing=false;
+    })
+    .addCase(oauthLoginWithGithub.pending,state=>{
+      state.isRefreshing=true;
+    })
+    .addCase(oauthLoginWithGithub.fulfilled,(state,action)=>{
+      state.user = action.payload.user;
+      state.isLoggedIn= true;
+      state.token = action.payload.accessToken;
+      state.isRefreshing=false;
+    })
+    .addCase(oauthLoginWithGithub.rejected,state=>{
+      state.isRefreshing=false;
+    })
+    .addCase(sendResetPasswordEmail.pending,(state)=>{
+      state.isRefreshing=true;
+    })
+    .addCase(sendResetPasswordEmail.fulfilled,state=>{
       state.isRefreshing=false;
     })
   }

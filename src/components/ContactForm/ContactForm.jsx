@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 
-export default function ContactForm() {
+export default function ContactForm({onClose}) {
   const idName = useId();
   const idNumber = useId();
 
@@ -18,6 +18,7 @@ export default function ContactForm() {
   const handleSubmit = (values, actions)=>{
     dispatch(addContact({name : values.name, phoneNumber : values.phoneNumber}))
     actions.resetForm();
+    onClose()
   } 
   return (
     <Formik initialValues={{name: "", phoneNumber: ""}} onSubmit={handleSubmit} validationSchema={ValidSchema}>

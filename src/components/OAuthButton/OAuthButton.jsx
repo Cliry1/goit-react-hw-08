@@ -4,10 +4,10 @@ import css from "./OAuthButton.module.css";
 const chooseTypeLogin = async (type)=>{
 switch (type){
   case "google":
-    window.location.href = "https://pet-proj-vjtd.onrender.com/auth/get-oauth-url"
+    window.location.href = "https://pet-proj-vjtd.onrender.com/auth/get-oauth-url-google"
     return;
-  case "facebook":
-    // dispatch(.);
+  case "github":
+    window.location.href = "https://pet-proj-vjtd.onrender.com/auth/get-oauth-url-github"
     return;
     default:
       return;

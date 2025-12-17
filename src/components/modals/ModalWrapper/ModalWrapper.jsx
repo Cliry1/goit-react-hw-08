@@ -10,8 +10,7 @@ const ModalWrapper = ({
   modalIsOpen,
   closeModal,
   customStyles = {},
-  buttonClassLogout = false,
-  buttonClassSettings = false,
+  buttonCloseModal = false,
   children,
 }) => {
   useEffect(() => {
@@ -38,9 +37,8 @@ const ModalWrapper = ({
       {children}
       <button
         className={clsx(
-          css["close-button"],
-          buttonClassLogout && css["button-class-logout"],
-          buttonClassSettings && css["button-class-settings"]
+          css["no-close-button"],
+          buttonCloseModal && css["close-button"]
         )}
         onClick={closeModal}
       >

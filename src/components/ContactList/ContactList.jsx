@@ -9,7 +9,7 @@ export default function ContactList() {
 
 const visibleContacts = useSelector(selectFilteredContacts);
 
-  return (
+  return visibleContacts?.length > 0 ?(
     <ul className={css.ul}>
       {
         visibleContacts.map((contact)=>(
@@ -20,6 +20,8 @@ const visibleContacts = useSelector(selectFilteredContacts);
         ))
       }
     </ul>
+  ) : (
+    <p>Add contacts please</p>
   )
 }
 

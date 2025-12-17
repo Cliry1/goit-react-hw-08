@@ -16,7 +16,7 @@ export const OAuthHandler = ({callback}) => {
     const sendCode = async () => {
       try {
         dispatch(callback(code))
-        navigate("/dashboard"); 
+        navigate("/"); 
       } catch (err) {
         navigate("/login");
       }
