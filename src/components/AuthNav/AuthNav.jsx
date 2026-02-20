@@ -5,8 +5,8 @@ export const AuthNav = () => {
 
   return (
     <div className={css.container}>
-      <NavLink className={css.register} to="/register">Register</NavLink>
-      <NavLink className={css.login} to="/login">Log In</NavLink>
+      <NavLink className={({ isActive }) => isActive ? `${css.register} ${css.active}` : css.register} to="/register">Register</NavLink>
+      <NavLink className={({ isActive }) => isActive ? `${css.login} ${css.active}` : css.login} to="/login">Log In</NavLink>
     </div>
   );
 };

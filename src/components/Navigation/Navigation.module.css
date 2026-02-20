@@ -1,20 +1,48 @@
-.home{
+.home, .contacts{
+  position: relative;
   text-decoration: none;
-  color: black;
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: 0.05em;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  color: #2e3152; 
+  background: transparent;
+  border: 2px solid transparent; 
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.home::after,
+.contacts::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 0%; 
+  border-radius: 1px;
+  background: linear-gradient(90deg, #5f6bdc, #9b59b6);
+  transition: width 0.3s ease; 
+}
+
+
+.home.active::after,
+.contacts.active::after {
+  width: 100%;
+}
+
+
+.home:not(.active):hover,
+.home:not(.active):focus,
+.contacts:not(.active):hover,
+.contacts:not(.active):focus{
+  transform: translateY(-3px);
+  color: #5f6bdc;
 }
 
 .container{
   display: flex;
   gap: 25px;
-
 }
-.contacts{
-  text-decoration: none;
-  color: black;
-}
-
-.contacts:hover,.home:hover,
-.contacts:focus,.home:focus{
-  color: rgb(106, 57, 254);
-}
-

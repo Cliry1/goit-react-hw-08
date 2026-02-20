@@ -1,18 +1,48 @@
+
+.register, .login{
+  position: relative;
+  text-decoration: none;
+  font-weight:600;
+  font-size: 17px;
+  letter-spacing: 0.05em;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  color: #2e3152; 
+  background: transparent;
+  border: 2px solid transparent; 
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.register::after,
+.login::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 0%; 
+  border-radius: 1px;
+  background: linear-gradient(90deg, #5f6bdc, #9b59b6);
+  transition: width 0.3s ease; 
+}
+
+.register.active::after,
+.login.active::after {
+  width: 100%;
+}
+
+
+.register:not(.active):hover,
+.register:not(.active):focus,
+.login:not(.active):hover,
+.login:not(.active):focus{
+  transform: translateY(-3px);
+  color: #5f6bdc;
+}
+
 .container{
   display: flex;
   gap: 25px;
-
 }
-.register{
-  text-decoration: none;
-  color: black;
-}
-.login{
-  text-decoration: none;
-  color: black;
-}
-.login:hover,.register:hover,
-.login:focus,.register:focus{
-  color: rgb(106, 57, 254);
-}
-
