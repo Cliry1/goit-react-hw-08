@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import toast from 'react-hot-toast';
 
-export const OAuthHandler = ({callback}) => {
+export const OAuthHandler = ({ callback }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
@@ -16,7 +17,14 @@ export const OAuthHandler = ({callback}) => {
     const sendCode = async () => {
       try {
         dispatch(callback(code))
-        navigate("/"); 
+        .unwrap()
+        .then((response)=>{
+        toast.success(response.message)
+      })
+        .catch((response)=>{
+        toast.error(response.message)
+      });
+        navigate("/");
       } catch (err) {
         navigate("/login");
       }
@@ -24,5 +32,5 @@ export const OAuthHandler = ({callback}) => {
     sendCode();
   }, [navigate, callback, dispatch]);
 
-  return null; 
+  return null;
 };

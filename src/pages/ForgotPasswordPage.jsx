@@ -4,7 +4,7 @@ import { ResetPassword } from '../components/ResetPassword/ResetPassword';
 export default function ForgotPasswordPage(){
     return (
       <div>
-        <DocumentTitle>Login</DocumentTitle>
+        <DocumentTitle>Reset Password</DocumentTitle>
         <ResetPassword />
       </div>
     );

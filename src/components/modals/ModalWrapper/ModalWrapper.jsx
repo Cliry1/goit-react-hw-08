@@ -9,7 +9,10 @@ Modal.setAppElement(document.getElementById("root"));
 const ModalWrapper = ({
   modalIsOpen,
   closeModal,
-  customStyles = {},
+  customStyles = {    
+    content: {
+      padding:"50px 40px",
+    }},
   buttonCloseModal = false,
   children,
 }) => {

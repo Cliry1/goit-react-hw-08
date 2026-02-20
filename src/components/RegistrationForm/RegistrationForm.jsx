@@ -2,7 +2,7 @@ import css from "./RegistrationForm.module.css"
 import { useDispatch } from "react-redux"
 import { register } from "../../redux/auth/operations"
 import { Field, Formik, Form, ErrorMessage } from "formik"
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 
 const RegSchema = Yup.object().shape({
@@ -18,8 +18,12 @@ export const RegistrationForm = ()=>{
       register(values)
     )
     .unwrap()
-    .then(() => toast.success('Registration successful.'))
-    .catch(() => toast.error('Registration failed. Please try again.'));
+    .then((response)=>{
+        toast.success(response.message)
+      })
+    .catch((response)=>{
+        toast.error(response.errors || response.message)
+      });
     actions.resetForm();
   }
   return (
@@ -44,7 +48,6 @@ export const RegistrationForm = ()=>{
         <button  className={css.button} type="submit">Register</button>
       </Form>
     </Formik>
-    <Toaster />
     </>
   );
 }

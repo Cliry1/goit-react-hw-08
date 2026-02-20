@@ -1,11 +1,12 @@
 .form{
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  min-width: 350px;
   gap: 20px;
   border: 1px solid black;
   padding: 16px;
   border-radius: 4px;
+
 }
 .formContainer{
   display: flex;
@@ -19,9 +20,35 @@
   border-radius: 3px;
   outline: transparent;
   border: black 1px solid;
-  }
+}
   
-  .input:hover, .input:focus{
+.input:hover, .input:focus{
   outline: rgb(103, 103, 238) 2px solid;
   border:1px solid transparent;
-  }
+}
+
+
+.photo{
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+.photo:hover, .photo:focus{
+  outline: rgb(103, 103, 238) 2px solid;
+}
+
+.requiredText{
+  color: red;
+}
+
+.requiredTextContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

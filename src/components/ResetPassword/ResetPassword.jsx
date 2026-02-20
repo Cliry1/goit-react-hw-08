@@ -1,11 +1,10 @@
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-import { resetPassword } from "../../redux/auth/operations";
+import { resetPassword, setPassword } from "../../redux/auth/operations";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import * as Yup from 'yup';
-
 
 
 const passwordRules = /^(?=.*[A-Za-z])(?=.*\d).+$/;
@@ -26,23 +25,33 @@ const passwordSchema = Yup.object({
     .oneOf([Yup.ref('password')], 'Passwords must match'),
 });
 
-export const ResetPassword = () => {
+export const ResetPassword = ({setPasswordReason=false}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { search } = useLocation();
   const [showButtonOne, setShowButtonOne] = useState(false);
   const [showButtonTwo, setShowButtonTwo] = useState(false);
 
 
-  const handleSubmit = (values, action) => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const token = urlParams.get("token");
-      dispatch(resetPassword({ password: values.password, token }))
-      .unwrap()
-      .then(()=> toast.success("Your password has been reset"))
-      .catch(() => toast.error("Bad request"));
-      action.resetForm();
-      navigate("/login");
-  };
+  const handleSubmit = async (values, action) => {
+
+      const token = new URLSearchParams(search).get("token");
+      try {
+          if (setPasswordReason) {
+            const response = await dispatch(setPassword({ password: values.password, token })).unwrap();
+            toast.success(response.message);
+          } else {
+            const response = await dispatch(resetPassword({ password: values.password, token })).unwrap();
+            toast.success(response.message);
+          }
+
+          action.resetForm();
+          navigate("/login");
+        } catch (error) {
+          toast.error(error.errors || error.message);
+        }
+      };
+
 
 
   return (
@@ -74,7 +83,7 @@ export const ResetPassword = () => {
           </button>
           <ErrorMessage name="retryPassword" component="span" />
         </div>
-        <button type="submit">Reset password</button>
+        <button type="submit">{setPasswordReason ? "Set password" : "Reset password"}</button>
       </Form>
     </Formik>
   );

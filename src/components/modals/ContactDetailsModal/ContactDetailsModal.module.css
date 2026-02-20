@@ -1,0 +1,85 @@
+.form{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 16px;
+  min-width: 350px;
+}
+.buttonsContainer{
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 52px;
+}
+.formContainer{
+  display: flex;
+  flex-direction: column;
+  min-height: 58px;
+}
+
+.requiredTextContainer{
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+
+
+
+.buttonActive{
+  display: block;
+}
+
+.buttonUnactive{
+  display: none;
+}
+
+
+.error{
+  color: red;
+}
+
+.inputUnactive{
+  border-color: transparent;
+  background: #f7f7f7;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+
+.inputActive{
+  border-radius: 3px;
+  outline: transparent;
+  border: black 1px solid;
+
+}
+  
+.inputActive:hover, .inputActive:focus{
+  outline: rgb(103, 103, 238) 2px solid;
+  border:1px solid transparent;
+}
+
+.photoUnactive{
+  cursor: auto;
+}
+
+.photoActive{
+  cursor: pointer;
+}
+
+.photo{
+  display: 'block';
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+}
+
+.photoActive:hover, .photoActive:focus{
+  outline: rgb(103, 103, 238) 2px solid;
+}

@@ -1,0 +1,10 @@
+body{
+  background: linear-gradient(135deg, #5f6bdc 0%, #9b59b6 50%, #c850c0 100%);
+  min-height: calc(100vh - 8px);
+  margin: 0;
+}
+ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
