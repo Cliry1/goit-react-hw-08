@@ -3,10 +3,28 @@
   gap: 40px;
 }
 .button{
-  margin: auto;
   cursor: pointer;
-
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  padding: 6px 12px;
+  color: #2e3152; 
+  background: transparent;
+  border: none;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 .text{
   margin: 0;
+  font-weight: 600;
+  font-size: 19px;
+  letter-spacing: 0.05em;
+  padding: 6px 12px;
+  background: linear-gradient(90deg, #5f6bdc, #9b59b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+.button:hover{
+  transform: translateY(-3px);
+  color: #5f6bdc;
+}
+

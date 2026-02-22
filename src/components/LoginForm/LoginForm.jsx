@@ -43,7 +43,7 @@ export const LoginForm = ()=>{
           <ErrorMessage name="password" component="span" className={css.error}/>
         </div>
         <button className={css.button} type="submit">Log In</button>
-        <button type="button" onClick={()=> dispatch(openModal({type:"SEND_EMAIL_RESET_PASSWORD"}))}>Forgot password</button>
+        <button className={css.forgotPasswordButton} type="button" onClick={()=> dispatch(openModal({type:"SEND_EMAIL_RESET_PASSWORD"}))}>Forgot password</button>
 
         <hr className={css.line}/>
         <OAuthButton type={"google"} svg={FcGoogle}>Login with Google</OAuthButton>

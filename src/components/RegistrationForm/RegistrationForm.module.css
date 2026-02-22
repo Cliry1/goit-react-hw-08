@@ -24,6 +24,7 @@
   border: 1px solid rgba(255,255,255,0.35);
   box-shadow: 0 12px 30px rgba(12,24,35,0.10);
   height: 364px;
+  animation: fadeIn 1s ease;
 }
 
 .container label{
@@ -61,7 +62,7 @@
 
 
 .button{
-  margin: 0 auto  ;
+  margin: 15px auto 0  ;
   width: 220px;
   padding: 10px 14px;
   font-size: 16px;
@@ -76,4 +77,16 @@
 
 .button:hover,.button:focus{
   transform: translateY(-2px);
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

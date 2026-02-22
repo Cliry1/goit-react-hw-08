@@ -3,6 +3,7 @@ import serverError from "../../assets/server_error.png";
 import { useDispatch } from "react-redux";
 import { checkHealth } from "../../redux/auth/operations";
 import { useEffect } from "react";
+import css from "./ServerError.module.css";
 
 export const ServerError = () => {
   const dispatch = useDispatch();
@@ -26,13 +27,15 @@ export const ServerError = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <img src={serverError} alt="server error" width="200" />
-      <h1>Sorry, something went wrong!</h1>
-      <p>
-        Try later. We are working hard for to fix a problem for you soon as
-        possible
+    <div className={css.container}>
+      <div className={css.mainTextContainer}>
+        <img src={serverError} alt="server error" />
+        <h1>Sorry, something <br/> went wrong!</h1>
+      </div>
+      <p className={css.subText}>
+        Please try again later.<br />
+       We&apos;re working hard to fix the problem as soon as possible.
       </p>
-    </>
+    </div>
   );
 };

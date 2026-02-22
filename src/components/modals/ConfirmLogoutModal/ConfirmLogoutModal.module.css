@@ -1,0 +1,53 @@
+.img{
+  width: 150px;
+}
+.title{
+  margin: 0;
+  text-align: center;
+  color: #2d3748; /* ще трохи світліший, більш м’який */
+  font-weight: 600;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.button{
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: 0.05em;
+  padding: 6px 12px;
+  color: #2d3748; 
+  background: transparent;
+  border: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+  border:1px solid #5f6cfc;
+  width: 100%;
+  border-radius: 15px;
+}
+
+
+.logoutButton{
+  background: #fe4c4c;
+  color: white;
+}
+
+.cancelButton{
+  background: transparent;
+  color: #2e3152;
+}
+.logoutButton:hover{
+  background: #d43d3d;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 16px rgba(254, 40, 40, 0.35);
+}
+
+.cancelButton:hover{
+  background: rgba(95, 108, 252, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 16px rgba(95, 108, 252, 0.25);
+}

@@ -4,7 +4,6 @@ import { setServerDown } from "./slice";
 
 // axios.defaults.baseURL = "https://pet-proj-vjtd.onrender.com";
 axios.defaults.baseURL = "http://localhost:3000";
-axios.defaults.timeout = 30000;
 
 const setAuthHeader = (accessToken) => {
   axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;

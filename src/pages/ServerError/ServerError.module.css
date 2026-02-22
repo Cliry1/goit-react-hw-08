@@ -1,0 +1,36 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.mainTextContainer {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 20px;
+  max-width: 600px;
+}
+
+.mainTextContainer img {
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.25));
+  width: 250px;
+}
+
+.mainTextContainer h1 {
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+  color: #ffffff;
+}
+
+.subText {
+  max-width: 700px;
+  font-size: 20px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.8);
+}
