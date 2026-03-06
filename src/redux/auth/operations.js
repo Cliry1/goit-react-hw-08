@@ -231,7 +231,7 @@ export const setPassword = createAsyncThunk(
 
 export const checkHealth = createAsyncThunk(
   "auth/checkHealth",
-  async ({ silent } = {}, thunkAPI) => {
+  async ({ silent } = {}, thunkAPI) => { 
     try {
       const response = await axios.get("/auth/health");
       return response.data;

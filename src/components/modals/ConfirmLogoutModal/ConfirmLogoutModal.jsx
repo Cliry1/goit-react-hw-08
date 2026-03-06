@@ -5,6 +5,8 @@ import { logout } from "../../../redux/auth/operations";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import css from "./ConfirmLogoutModal.module.css";
+import imgLogout from "../../../assets/logout.png";
+
 
 export const ConfirmLogoutModal = ({ onClose }) => {
   const navigate = useNavigate();
@@ -29,7 +31,7 @@ export const ConfirmLogoutModal = ({ onClose }) => {
       <div className={css.container}>
         <img
           className={css.img}
-          src="/src/assets/logout.png"
+          src={imgLogout}
           alt="Logout icon"
         />
         <h1 className={css.title}>
