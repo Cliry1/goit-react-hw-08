@@ -3,18 +3,34 @@
   align-items:center;
   justify-content:center;
   gap:12px;
-  padding:10px 14px;
   background: transparent;
   border: none;
   cursor: pointer;
-  text-decoration: none !important;
+  color: rgba(15,23,36,0.85);
+  text-decoration: none;
+  padding: 6px 0;
+  font-size: 16px;
+  transition: color 0.2s;
 }
 
-.button:hover, .button:focus {
-  text-decoration: none !important;
+
+.button:hover{
+  color: #5f6bdc;
+}
+.button:focus{
+  outline: 2px solid rgba(95,107,220,0.3);
+  border-radius: 4px;
+  outline-offset: 2px;
+  color: #5f6bdc;
 }
 
-.img{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px}
+.img{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:20px;
+  height:20px
+}
 
 .text{
   font-weight:600;

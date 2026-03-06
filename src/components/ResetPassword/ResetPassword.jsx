@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as Yup from 'yup';
-
+import css from "./ResetPassword.module.css";
 
 const passwordRules = /^(?=.*[A-Za-z])(?=.*\d).+$/;
 const passwordSchema = Yup.object({
@@ -21,7 +21,9 @@ const passwordSchema = Yup.object({
 
   retryPassword: Yup
     .string()
-    .required('Please confirm your password')
+    .required('Password is required')
+    .min(8, 'Password must be at least 8 characters')
+    .max(64, 'Password must be at most 64 characters')
     .oneOf([Yup.ref('password')], 'Passwords must match'),
 });
 
@@ -60,30 +62,32 @@ export const ResetPassword = ({setPasswordReason=false}) => {
       onSubmit={handleSubmit}
       validationSchema={passwordSchema}
     >
-      <Form>
-        <div>
+      <Form className={`${css.form} animation`}>
+        <div className={css.container}>
           <label htmlFor="password">New Password</label>
           <Field  type={showButtonOne ? 'text' : 'password'} name="password" id="password" autoComplete="new-password"/>
           <button
+            className={css.buttonHidden}
             type="button"
             onClick={() => setShowButtonOne((prev) => !prev)}
           >
             {showButtonOne ? "🙈" : "👁️"}
           </button>
-          <ErrorMessage name="password" component="span" />
+          <ErrorMessage className={css.error} name="password" component="span" />
         </div>
-        <div>
+        <div className={css.container}>
           <label htmlFor="retryPassword">Retry Password</label>
           <Field  type={showButtonTwo ? 'text' : 'password'} name="retryPassword" id="retryPassword" autoComplete="new-password"/>
           <button
+            className={css.buttonHidden}
             type="button"
             onClick={() => setShowButtonTwo((prev) => !prev)}
           >
             {showButtonTwo ? "🙈" : "👁️"}
           </button>
-          <ErrorMessage name="retryPassword" component="span" />
+          <ErrorMessage className={css.error} name="retryPassword" component="span" />
         </div>
-        <button type="submit">{setPasswordReason ? "Set password" : "Reset password"}</button>
+        <button  className={css.buttonSend} type="submit">{setPasswordReason ? "Set password" : "Reset password"}</button>
       </Form>
     </Formik>
   );

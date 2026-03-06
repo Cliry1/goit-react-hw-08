@@ -4,7 +4,7 @@
 .title{
   margin: 0;
   text-align: center;
-  color: #2d3748; /* ще трохи світліший, більш м’який */
+  color: #2d3748;
   font-weight: 600;
 }
 
@@ -13,6 +13,7 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  min-width: 310px;
 }
 
 .button{
@@ -23,7 +24,6 @@
   padding: 6px 12px;
   color: #2d3748; 
   background: transparent;
-  border: none;
   transition: color 0.3s ease, transform 0.3s ease;
   border:1px solid #5f6cfc;
   width: 100%;
@@ -32,6 +32,7 @@
 
 
 .logoutButton{
+  border:none;
   background: #fe4c4c;
   color: white;
 }
@@ -51,3 +52,4 @@
   transform: translateY(-2px);
   box-shadow: 0 2px 16px rgba(95, 108, 252, 0.25);
 }
+

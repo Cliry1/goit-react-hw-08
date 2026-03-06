@@ -4,14 +4,13 @@ import ModalWrapper from "../ModalWrapper/ModalWrapper";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import css from "./ContactDetailsModal.module.css";
 import { useState, useEffect, useId } from "react";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 import clsx from "clsx";
 import { changeContact } from "../../../redux/contacts/operations";
 import defaultAvatar from "../../../assets/Profile_avatar_placeholder_large.png";
 import * as Yup from "yup";
 
-
-const PhotoInput = ({ initialPhoto, setFile, disabled }) => {
+const PhotoInput = ({ initialPhoto, setFile, disabled, isEditable }) => {
   const [preview, setPreview] = useState(defaultAvatar);
 
   useEffect(() => {
@@ -43,7 +42,13 @@ const PhotoInput = ({ initialPhoto, setFile, disabled }) => {
       style={{
         backgroundImage: `url(${preview || defaultAvatar})`,
       }}
+      title={
+        isEditable
+          ? "Photo cannot be changed in view mode. Click 'Change information' to edit."
+          : "Click to change photo"
+      }
     >
+      <div className={css.photoOverlay}>Upload photo</div>
       <input
         type="file"
         accept="image/*"
@@ -62,8 +67,9 @@ export const ContactDetailsModal = ({ onClose, contact }) => {
   const idInstagram = useId();
   const idTelegram = useId();
   const idFacebook = useId();
-  const idTwitter = useId();
 
+  const usernameRules = /^[A-Za-z0-9_]+$/;
+  const linkRules = /^[A-Za-z0-9-._~:/?=&#+]+$/
   const isOpen = useSelector(selectIsModalOpen);
   const [isEditable, setIsEditable] = useState(true);
   const [localContact, setLocalContact] = useState(contact);
@@ -88,15 +94,15 @@ export const ContactDetailsModal = ({ onClose, contact }) => {
     instagram: Yup.string()
       .transform((v) => (v === "" ? null : v))
       .nullable()
-      .matches(/^[^@]*$/, "Символ @ заборонений"),
+      .matches(usernameRules, "Latin letters and numbers only"),
     telegram: Yup.string()
       .transform((v) => (v === "" ? null : v))
       .nullable()
-      .matches(/^[^@]*$/, "Символ @ заборонений"),
-    twitter: Yup.string()
+      .matches(usernameRules, "Latin letters and numbers only"),
+    facebook: Yup.string()
       .transform((v) => (v === "" ? null : v))
       .nullable()
-      .matches(/^[^@]*$/, "Символ @ заборонений"),
+      .matches(linkRules, "Not a valid link"),
   });
 
   const handleSubmit = (values) => {
@@ -115,20 +121,18 @@ export const ContactDetailsModal = ({ onClose, contact }) => {
     if (values.facebook !== undefined) {
       formData.append("facebook", values.facebook ?? "");
     }
-    if (values.twitter !== undefined) {
-      formData.append("twitter", values.twitter ?? "");
-    }
+
     if (values.secondPhoneNumber !== undefined) {
       formData.append("secondPhoneNumber", values.secondPhoneNumber ?? "");
     }
     dispatch(changeContact({ id: contact._id, formData }))
-    .unwrap()
-    .then(()=>toast.success("Contact successfully changed!"))
-    .catch((response) => {
-      if(response.status !== 401) {
-        toast.error("Contact not found!")
-      }
-    });
+      .unwrap()
+      .then(() => toast.success("Contact successfully changed!"))
+      .catch((response) => {
+        if (response.status !== 401) {
+          toast.error("Contact not found!");
+        }
+      });
     setLocalContact({ ...localContact, ...values });
     setIsEditable(true);
   };
@@ -138,6 +142,11 @@ export const ContactDetailsModal = ({ onClose, contact }) => {
       modalIsOpen={isOpen}
       closeModal={onClose}
       buttonCloseModal={true}
+      customStyles={{
+        content: {
+          padding: "30px 40px 30px",
+        },
+      }}
     >
       <div>
         <Formik
@@ -147,7 +156,6 @@ export const ContactDetailsModal = ({ onClose, contact }) => {
             name: localContact.name,
             phoneNumber: localContact.phoneNumber,
             secondPhoneNumber: localContact.secondPhoneNumber,
-            twitter: localContact.twitter,
             facebook: localContact.facebook,
             instagram: localContact.instagram,
             telegram: localContact.telegram,
@@ -160,22 +168,24 @@ export const ContactDetailsModal = ({ onClose, contact }) => {
               values.name === localContact.name &&
               values.phoneNumber === localContact.phoneNumber &&
               !values.photo &&
-              values.secondPhoneNumber === localContact.secondPhoneNumber &&
-              values.facebook === localContact.facebook &&
-              values.twitter === localContact.twitter &&
-              values.instagram === localContact.instagram &&
-              values.telegram === localContact.telegram;
-
+              (values.secondPhoneNumber ?? "") ===
+                (localContact.secondPhoneNumber ?? "") &&
+              (values.facebook ?? "") === (localContact.facebook ?? "") &&
+              (values.instagram ?? "") === (localContact.instagram ?? "") &&
+              (values.telegram ?? "") === (localContact.telegram ?? "");
             return (
               <Form className={css.form}>
                 <PhotoInput
                   initialPhoto={contact.photo}
                   setFile={(file) => setFieldValue("photo", file)}
                   disabled={isEditable}
+                  isEditable={isEditable}
                 />
                 <div className={css.requiredTextContainer}>
                   <div className={css.formContainer}>
-                    <label htmlFor={idName}>Name:</label>
+                    <label className={css.label} htmlFor={idName}>
+                      Name:
+                    </label>
                     <Field
                       name="name"
                       disabled={isEditable}
@@ -193,7 +203,9 @@ export const ContactDetailsModal = ({ onClose, contact }) => {
                   </div>
 
                   <div className={css.formContainer}>
-                    <label htmlFor={idNumber}>Number:</label>
+                    <label className={css.label} htmlFor={idNumber}>
+                      Number:
+                    </label>
                     <Field
                       name="phoneNumber"
                       disabled={isEditable}
@@ -211,7 +223,9 @@ export const ContactDetailsModal = ({ onClose, contact }) => {
                   </div>
                 </div>
                 <div className={css.formContainer}>
-                  <label htmlFor={idSecondPhoneNumber}>Second Number:</label>
+                  <label className={css.label} htmlFor={idSecondPhoneNumber}>
+                    Second Number:
+                  </label>
                   <Field
                     className={isEditable ? css.inputUnactive : css.inputActive}
                     type="text"
@@ -226,13 +240,16 @@ export const ContactDetailsModal = ({ onClose, contact }) => {
                   />
                 </div>
                 <div className={css.formContainer}>
-                  <label htmlFor={idInstagram}>Instagram username:</label>
+                  <label className={css.label} htmlFor={idInstagram}>
+                    Instagram username:
+                  </label>
                   <Field
                     className={isEditable ? css.inputUnactive : css.inputActive}
                     type="text"
                     disabled={isEditable}
                     name="instagram"
                     id={idInstagram}
+                    placeholder={isEditable ? "" : "e.g. alexcloath"}
                   />
                   <ErrorMessage
                     name="instagram"
@@ -241,13 +258,20 @@ export const ContactDetailsModal = ({ onClose, contact }) => {
                   />
                 </div>
                 <div className={css.formContainer}>
-                  <label htmlFor={idFacebook}>Facebook link:</label>
+                  <label className={css.label} htmlFor={idFacebook}>
+                    Facebook link:
+                  </label>
                   <Field
                     className={isEditable ? css.inputUnactive : css.inputActive}
                     type="text"
                     disabled={isEditable}
                     name="facebook"
                     id={idFacebook}
+                    placeholder={
+                      isEditable
+                        ? ""
+                        : "e.g. https://www.facebook.com/alexcloath"
+                    }
                   />
                   <ErrorMessage
                     name="facebook"
@@ -256,31 +280,19 @@ export const ContactDetailsModal = ({ onClose, contact }) => {
                   />
                 </div>
                 <div className={css.formContainer}>
-                  <label htmlFor={idTelegram}>Telegram username:</label>
+                  <label className={css.label} htmlFor={idTelegram}>
+                    Telegram username:
+                  </label>
                   <Field
                     className={isEditable ? css.inputUnactive : css.inputActive}
                     type="text"
                     disabled={isEditable}
                     name="telegram"
                     id={idTelegram}
+                    placeholder={isEditable ? "" : "e.g. alexcloath"}
                   />
                   <ErrorMessage
                     name="telegram"
-                    component="span"
-                    className={css.error}
-                  />
-                </div>
-                <div className={css.formContainer}>
-                  <label htmlFor={idTwitter}>Twitter username:</label>
-                  <Field
-                    className={isEditable ? css.inputUnactive : css.inputActive}
-                    type="text"
-                    disabled={isEditable}
-                    name="twitter"
-                    id={idTwitter}
-                  />
-                  <ErrorMessage
-                    name="twitter"
                     component="span"
                     className={css.error}
                   />
@@ -302,6 +314,13 @@ export const ContactDetailsModal = ({ onClose, contact }) => {
                     className={clsx(
                       isEditable ? css.buttonUnactive : css.buttonActive,
                     )}
+                    title={
+                      isEqual
+                        ? "No changes to save"
+                        : !isValid
+                          ? "Please fix validation errors"
+                          : ""
+                    }
                   >
                     Save change
                   </button>

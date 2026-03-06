@@ -34,7 +34,9 @@
 
 
 .home:not(.active):hover,
-.contacts:not(.active):hover{
+.contacts:not(.active):hover,
+.home:not(.active):focus-visible,
+.contacts:not(.active):focus-visible{
   transform: translateY(-3px);
   color: #5f6bdc;
 }

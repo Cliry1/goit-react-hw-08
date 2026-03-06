@@ -22,12 +22,12 @@ import { OAuthHandler } from "./OAuthHandler";
 import { SpinnerLoading } from "../components/SpinnerLoading/SpinnerLoading";
 import { Toaster } from "react-hot-toast";
 import { AppBar } from './AppBar/AppBar';
-const NotFoundPage = lazy(() => import("../pages/NotFoundPage"));
+const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage.jsx"));
 const ForgotPasswordPage = lazy(() => import("../pages/ForgotPasswordPage"));
 const HomePage = lazy(() => import("../pages/HomePage/HomePage.jsx"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
 const LoginPage = lazy(() => import("../pages/LoginPage"));
-const ContactsPage = lazy(() => import("../pages/ContactsPage"));
+const ContactsPage = lazy(() => import("../pages/ContactsPage/ContactsPage.jsx"));
 const SetPasswordPage = lazy(() => import("../pages/SetPasswordPage"));
 
 export default function App() {
@@ -77,9 +77,7 @@ export default function App() {
         }}
       />
       {(isRefreshing || isLoading) && <SpinnerLoading />}
-      <div style={{ position: "sticky", top: 8, zIndex: 100 }}>
-        <AppBar />
-      </div>
+      <AppBar />
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />

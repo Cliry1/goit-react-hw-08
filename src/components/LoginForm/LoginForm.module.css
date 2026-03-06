@@ -6,6 +6,7 @@
 
 .form{
   display: flex;
+  justify-content: center;
   flex-direction: column;
   margin: 60px auto;
   width: 420px;
@@ -17,13 +18,13 @@
   border: 1px solid rgba(255,255,255,0.35);
   box-shadow: 0 12px 30px rgba(12,24,35,0.10);
   height: 364px;
-  animation: fadeIn 1s ease;
 }
 
 .container{
   display: flex;
   flex-direction: column;
   height: 96px;
+  position: relative;
 }
 .container label{
   margin-bottom: 6px;
@@ -33,11 +34,11 @@
   font-weight: 600;
 }
 .container input{
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 12px 48px 12px 20px;
+  border-radius: 12px;
   border: 1px solid rgba(15,23,36,0.08);
   background: rgba(255,255,255,0.9);
-  font-size: 14px;
+  font-size: 16px;
   color: #0f1720;
   transition: border-color .2s, box-shadow .2s;
 }
@@ -52,24 +53,26 @@
   border-color: rgba(95,107,220,0.6);
 }
 .button{
-  margin: 0 auto 16px;
+  margin: 6px auto 10px;
   width: 220px;
   padding: 10px 14px;
   font-size: 16px;
   background: linear-gradient(90deg, #5f6bdc 0%, #9b59b6 100%);
   cursor: pointer;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   color: #fff;
   font-weight: 600;
   box-shadow: 0 8px 18px rgba(95,107,220,0.16);
+  transition: transform .2s ease;
 }
 
-.button:hover,.button:focus{
+.button:hover,.button:focus-visible{
   transform: translateY(-2px);
+  outline:transparent;
 }
 
-.form button[type="button"]{
+.forgotPasswordButton{
   background: transparent;
   border: none;
   color: rgba(15,23,36,0.85);
@@ -80,10 +83,10 @@
   transition: color 0.2s;
 
 }
-.form button[type="button"]:hover{
+.forgotPasswordButton:hover{
   color: #5f6bdc;
 }
-.form button[type="button"]:focus{
+.forgotPasswordButton:focus{
   outline: 2px solid rgba(95,107,220,0.3);
   border-radius: 4px;
   outline-offset: 2px;
@@ -97,19 +100,16 @@
   margin: 12px 0;
 }
 
-@media (max-width: 420px){
-  .form{padding:18px;width:94%;gap:12px}
-  .button{width:100%;align-self:stretch}
-}
 
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.buttonHidden{
+  font-size: 22px;
+  position: absolute;
+  right: 8px;
+  top: 33px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
+

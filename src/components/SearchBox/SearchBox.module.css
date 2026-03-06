@@ -3,18 +3,31 @@
   margin-bottom: 18px;
 }
 .text{
-margin: 0;
+  margin: 0 0 12px 10px;
+  font-size: 24px;
+  color: rgba(255,255,255,0.8);
 }
 .input{
-width: 328px;
-padding: 4px ;
-border-radius: 3px;
-outline: transparent;
-border: black 1px solid;
+  padding: 12px 48px 12px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(15,23,36,0.08);
+  background: rgba(255,255,255,0.9);
+  font-size: 16px;
+  color: #0f1720;
+  transition: border-color .2s, box-shadow .2s;
+  width: 400px;
 }
 
 
+
+.input::placeholder{
+  color: rgba(15,23,36,0.4)
+}
+
 .input:hover, .input:focus{
-outline: rgb(103, 103, 238) 2px solid;
-border:1px solid transparent;
+  border-color: rgb(89, 104, 240);
+  box-shadow: 0 4px 12px rgba(95,107,220,0.1);
+}
+.input:focus{
+  outline: none;
 }

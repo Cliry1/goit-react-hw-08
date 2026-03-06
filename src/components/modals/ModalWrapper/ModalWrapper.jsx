@@ -19,11 +19,14 @@ const ModalWrapper = ({
   useEffect(() => {
     if (modalIsOpen) {
       document.body.classList.add(css["no-scroll"]);
+      document.documentElement.classList.add("no-scroll");
     } else {
       document.body.classList.remove(css["no-scroll"]);
+      document.documentElement.classList.remove("no-scroll");
     }
     return () => {
       document.body.classList.remove(css["no-scroll"]);
+      document.documentElement.classList.remove("no-scroll");
     };
   }, [modalIsOpen]);
 
@@ -34,7 +37,7 @@ const ModalWrapper = ({
       shouldCloseOnOverlayClick={true}
       ariaHideApp={false}
       style={customStyles}
-      className={css.modal}
+      className={`${css.modal} animation`}
       overlayClassName={css.backdrop}
     >
       {children}
@@ -45,7 +48,7 @@ const ModalWrapper = ({
         )}
         onClick={closeModal}
       >
-        <FiX />
+        <FiX className={css.closeIcon}/>
       </button>
     </Modal>
   );

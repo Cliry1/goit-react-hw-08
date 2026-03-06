@@ -9,15 +9,15 @@ export default function Contact({ contact }) {
   const dispatch = useDispatch();
 
   return (
-    <div className={css.container}>
+    <>
       <div className={css.mainInfo}>
         <div className={css.containerBig}>
           <div className={css.containerSmall}>
-            <FontAwesomeIcon icon={faUser} />
+            <FontAwesomeIcon className={css.icon} icon={faUser} />
             <p className={css.p}>{contact.name}</p>
           </div>
           <div className={css.containerSmall}>
-            <FontAwesomeIcon icon={faPhone} />
+            <FontAwesomeIcon className={css.icon} icon={faPhone} />
             <p className={css.p}>{contact.phoneNumber}</p>
           </div>
         </div>
@@ -47,12 +47,14 @@ export default function Contact({ contact }) {
           </button>
         </div>
       </div>
-      <div>
+      {(contact.instagram || contact.facebook || contact.telegram || contact.twitter) && (
+      <div className={css.socialMediaContainer}>
         {contact.instagram && <a className={css.linkSocialMedia} href={`https://instagram.com/${contact.instagram}`} rel="noreferrer" target="_blank"><FaInstagram/></a>}
         {contact.facebook && <a className={css.linkSocialMedia} href={contact.facebook} rel="noreferrer" target="_blank"><FaFacebookF/></a>}
         {contact.telegram && <a className={css.linkSocialMedia} href={`https://t.me/${contact.telegram}`} rel="noreferrer" target="_blank"><FaTelegramPlane/></a>}
         {contact.twitter && <a className={css.linkSocialMedia} href={`https://x.com/${contact.twitter}`} rel="noreferrer" target="_blank"><FaTwitter/></a>}
       </div>
-    </div>
+      )}
+    </>
   );
 }

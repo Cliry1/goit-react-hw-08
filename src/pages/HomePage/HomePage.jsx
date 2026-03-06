@@ -7,7 +7,6 @@ import imgEdit from "../../assets/edit.png";
 import css from "./HomePage.module.css";
 import {useNavigate } from "react-router-dom";
 
-
 export default function HomePage() {
   const navigate = useNavigate();
 
@@ -15,7 +14,7 @@ export default function HomePage() {
   return (
     <>
       <DocumentTitle>Home</DocumentTitle>
-      <div className={css.container} >
+      <div className={`${css.container} animation`} >
         <div className={css.mainContent} >
           <img className={css.mainImg} src={img} alt="Background illustration for page" />
           <h1 className={css.title}>Your phonebook <br/>is waiting for you!</h1>

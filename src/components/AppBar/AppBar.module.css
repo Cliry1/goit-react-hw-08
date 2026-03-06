@@ -1,17 +1,38 @@
 .header {
-  margin: 8px 30px 16px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  max-width: 1380px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 14px 24px;
-  background: rgba(255, 255, 255, 0.72);
-  -webkit-backdrop-filter: blur(8px) saturate(120%);
-  backdrop-filter: blur(8px) saturate(120%);
-  box-shadow: 0 8px 24px rgba(12, 24, 35, 0.12);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  transition: box-shadow .18s ease, transform .12s ease;
-  min-height: 65px;
-  box-sizing: border-box;
+  align-items: center;  
   font-size: 18px;
+  transition: box-shadow .18s ease, transform .12s ease;
+  
+  
 }
+.emptyBlock{
+  height: 8px;
+  width: 160%;
+  background: linear-gradient(135deg, #5f6bdc 0%, #9b59b6 50%, #c850c0 100%); 
+
+}
+
+.appBar{
+  margin: 0 30px;
+  padding: 14px 24px;
+  background: rgb(222, 222, 222);
+  -webkit-backdrop-filter: blur(1000px);
+  backdrop-filter: blur(1000px);
+   box-shadow: 0 8px 24px rgba(12, 24, 35, 0.12);
+   border-radius: 12px;
+   border: 1px solid rgb(204, 204, 204);
+   min-height: 65px;
+   box-sizing: border-box;
+   
+}
+

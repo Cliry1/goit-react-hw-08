@@ -5,8 +5,8 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import { useState, useEffect } from "react";
-import defaultPhoto from "../../assets/4211763.png";
-import toast from 'react-hot-toast';
+import defaultPhoto from "../../assets/Profile_avatar_placeholder_large.png";
+import toast from "react-hot-toast";
 
 const PhotoInput = ({ initialPhoto, setFieldValue }) => {
   const [preview, setPreview] = useState(initialPhoto);
@@ -30,11 +30,11 @@ const PhotoInput = ({ initialPhoto, setFieldValue }) => {
         backgroundImage: preview ? `url(${preview})` : "none",
       }}
     >
+      <div className={css.photoOverlay}>Upload photo</div>
       <input type="file" accept="image/*" onChange={handleChange} hidden />
     </label>
   );
 };
-
 
 export default function ContactForm({ onClose }) {
   const idName = useId();
@@ -43,7 +43,9 @@ export default function ContactForm({ onClose }) {
   const idInstagram = useId();
   const idTelegram = useId();
   const idFacebook = useId();
-  const idTwitter = useId();
+
+  const usernameRules = /^[A-Za-z0-9_]+$/;
+  const linkRules = /^[A-Za-z0-9-._~:/?=&#+]+$/;
 
   const ValidSchema = Yup.object().shape({
     name: Yup.string()
@@ -56,17 +58,26 @@ export default function ContactForm({ onClose }) {
       .max(12, "Too long")
       .required("Required"),
     secondPhoneNumber: Yup.string()
+      .transform((v) => (v === "" ? null : v))
+      .nullable()
       .matches(/^\d+$/, "Only digits allowed")
       .min(5, "Too short")
       .max(12, "Too long"),
-    instagram: Yup.string().matches(/^[^@]*$/, "Символ @ заборонений"),
-    telegram: Yup.string().matches(/^[^@]*$/, "Символ @ заборонений"),
-    twitter: Yup.string().matches(/^[^@]*$/, "Символ @ заборонений"),
+    instagram: Yup.string()
+      .transform((v) => (v === "" ? null : v))
+      .nullable()
+      .matches(usernameRules, "Latin letters and numbers only"),
+    telegram: Yup.string()
+      .transform((v) => (v === "" ? null : v))
+      .nullable()
+      .matches(usernameRules, "Latin letters and numbers only"),
+    facebook: Yup.string()
+      .transform((v) => (v === "" ? null : v))
+      .nullable()
+      .matches(linkRules, "Not a valid link"),
   });
 
   const dispatch = useDispatch();
-
-
 
   const handleSubmit = async (values, actions) => {
     const formData = new FormData();
@@ -84,27 +95,21 @@ export default function ContactForm({ onClose }) {
     if (values.facebook) {
       formData.append("facebook", values.facebook);
     }
-    if (values.twitter) {
-      formData.append("twitter", values.twitter);
-    }
     if (values.secondPhoneNumber) {
       formData.append("secondPhoneNumber", values.secondPhoneNumber);
     }
     dispatch(addContact(formData))
-    .unwrap()
-    .then(()=>toast.success("Contact successfully created!"))
-    .catch((response) => {
-      if(response.status !== 401) {
-        toast.error("Contact not found!")
-      }
-    });
+      .unwrap()
+      .then(() => toast.success("Contact successfully created!"))
+      .catch((response) => {
+        if (response.status !== 401) {
+          toast.error("Contact not found!");
+        }
+      });
     actions.resetForm();
     onClose();
   };
 
-
-
-  
   return (
     <Formik
       initialValues={{
@@ -114,7 +119,6 @@ export default function ContactForm({ onClose }) {
         secondPhoneNumber: "",
         instagram: "",
         telegram: "",
-        twitter: "",
         facebook: "",
       }}
       onSubmit={handleSubmit}
@@ -123,13 +127,14 @@ export default function ContactForm({ onClose }) {
       {({ isValid, setFieldValue, dirty }) => {
         return (
           <Form className={css.form}>
-            <PhotoInput
-              initialPhoto={defaultPhoto}
-              setFieldValue={setFieldValue}
-            />
+              <PhotoInput
+                initialPhoto={defaultPhoto}
+                setFieldValue={setFieldValue}
+              />
+
             <div className={css.requiredTextContainer}>
               <div className={css.formContainer}>
-                <label htmlFor={idName}>
+                <label className={css.label} htmlFor={idName}>
                   Name <span className={css.requiredText}>*</span>
                 </label>
                 <Field
@@ -145,7 +150,7 @@ export default function ContactForm({ onClose }) {
                 />
               </div>
               <div className={css.formContainer}>
-                <label htmlFor={idNumber}>
+                <label className={css.label} htmlFor={idNumber}>
                   Number <span className={css.requiredText}>*</span>
                 </label>
                 <Field
@@ -164,7 +169,9 @@ export default function ContactForm({ onClose }) {
               </div>
             </div>
             <div className={css.formContainer}>
-              <label htmlFor={idSecondPhoneNumber}>Second Number</label>
+              <label className={css.label} htmlFor={idSecondPhoneNumber}>
+                Second Number
+              </label>
               <Field
                 className={css.input}
                 type="text"
@@ -178,12 +185,15 @@ export default function ContactForm({ onClose }) {
               />
             </div>
             <div className={css.formContainer}>
-              <label htmlFor={idInstagram}>Instagram username</label>
+              <label className={css.label} htmlFor={idInstagram}>
+                Instagram username
+              </label>
               <Field
                 className={css.input}
                 type="text"
                 name="instagram"
                 id={idInstagram}
+                placeholder="e.g. alexcloath"
               />
               <ErrorMessage
                 name="instagram"
@@ -192,12 +202,15 @@ export default function ContactForm({ onClose }) {
               />
             </div>
             <div className={css.formContainer}>
-              <label htmlFor={idFacebook}>Facebook link</label>
+              <label className={css.label} htmlFor={idFacebook}>
+                Facebook link
+              </label>
               <Field
                 className={css.input}
                 type="text"
                 name="facebook"
                 id={idFacebook}
+                placeholder="e.g. https://www.facebook.com/alexcloath"
               />
               <ErrorMessage
                 name="facebook"
@@ -206,12 +219,15 @@ export default function ContactForm({ onClose }) {
               />
             </div>
             <div className={css.formContainer}>
-              <label htmlFor={idTelegram}>Telegram username</label>
+              <label className={css.label} htmlFor={idTelegram}>
+                Telegram username
+              </label>
               <Field
                 className={css.input}
                 type="text"
                 name="telegram"
                 id={idTelegram}
+                placeholder="e.g. alexcloath"
               />
               <ErrorMessage
                 name="telegram"
@@ -219,21 +235,11 @@ export default function ContactForm({ onClose }) {
                 className={css.error}
               />
             </div>
-            <div className={css.formContainer}>
-              <label htmlFor={idTwitter}>Twitter username</label>
-              <Field
-                className={css.input}
-                type="text"
-                name="twitter"
-                id={idTwitter}
-              />
-              <ErrorMessage
-                name="twitter"
-                component="span"
-                className={css.error}
-              />
-            </div>
-            <button type="submit" disabled={!isValid || !dirty}>
+            <button
+              className={css.button}
+              type="submit"
+              disabled={!isValid || !dirty}
+            >
               Add contact
             </button>
           </Form>

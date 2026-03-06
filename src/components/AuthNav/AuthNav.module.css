@@ -33,7 +33,9 @@
 
 
 .register:not(.active):hover,
-.login:not(.active):hover{
+.login:not(.active):hover,
+.register:not(.active):focus-visible,
+.login:not(.active):focus-visible{
   transform: translateY(-3px);
   color: #5f6bdc;
 }

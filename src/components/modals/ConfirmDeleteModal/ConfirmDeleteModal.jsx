@@ -3,6 +3,8 @@ import ModalWrapper from '../ModalWrapper/ModalWrapper'
 import { selectIsModalOpen } from '../../../redux/modal/selectors';
 import { deleteContacts } from "../../../redux/contacts/operations";
 import toast from 'react-hot-toast';
+import css from "./ConfirmDeleteModal.module.css";
+import imgDelete from "../../../assets/delete.png"
 
 
 export const ConfirmDeleteModal = ({onClose, ...modalProps}) =>{
@@ -23,8 +25,18 @@ export const ConfirmDeleteModal = ({onClose, ...modalProps}) =>{
   
   return(
     <ModalWrapper modalIsOpen={isOpen} closeModal={onClose}>
-      <button onClick={handleDelete}>Yes</button>
-      <button onClick={onClose}>No</button>
+            <div className={css.container}>
+              <img
+                className={css.img}
+                src={imgDelete}
+                alt="Delete icon"
+              />
+              <h1 className={css.title}>
+                Are you sure you want <br /> to delete this contact?
+              </h1>
+              <button className={`${css.button} ${css.deleteButton}`} onClick={handleDelete}>Yes</button>
+              <button className={`${css.button} ${css.cancelButton}`} onClick={onClose}>No</button>
+            </div>
     </ModalWrapper>
   )
 }

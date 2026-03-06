@@ -8,6 +8,7 @@ import {
 } from "../../../redux/auth/operations";
 import toast from "react-hot-toast";
 import * as yup from "yup";
+import css from "./SendResetPasswordEmailModal.module.css";
 
 const schemaEmail = yup.object({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -49,17 +50,18 @@ export const SendResetPasswordEmailModal = ({
 
   return (
     <ModalWrapper modalIsOpen={isOpen} closeModal={onClose}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={css.container}>
         {setPasswordReason ? (
-          <p>
+          <p className={css.text} >
             You are logged in via Google or GitHub.
             <br />
-            To be able to log in the standard way, you need to add a password.
+            To be able to log in the standard way, <br /> you need to add a password.
           </p>
         ) : (
-          <p>Enter your password.</p>
+          <p className={css.text}>Enter your email. A password <br />recovery message will be sent to it.</p>
         )}
         <input
+          className={css.input}
           type="email"
           name="email"
           value={email}
@@ -67,7 +69,7 @@ export const SendResetPasswordEmailModal = ({
           placeholder="Enter your email"
         />
         {error && <p>{error}</p>}
-        <button type="submit">
+        <button className={css.button} type="submit">
           {setPasswordReason ? "Start set" : "Start reset"}
         </button>
       </form>

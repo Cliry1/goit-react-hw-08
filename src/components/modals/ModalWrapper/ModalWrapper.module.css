@@ -20,6 +20,7 @@
   max-height: 95%;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  outline:none;
 }
 
 .modal::-webkit-scrollbar {
@@ -61,12 +62,15 @@
   outline: none;
 }
 
-.close-icon {
-  width: 24px;
-  height: 24px;
-  fill: var(--primary-blue-color);
-  stroke: var(--primary-blue-color);
+.closeIcon {
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  padding: 4px;
 }
-
+.closeIcon:hover {
+    background: rgba(0,0,0,0.08);
+}
 
 

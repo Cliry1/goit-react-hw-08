@@ -1,15 +1,49 @@
 body{
-  background: linear-gradient(135deg, #5f6bdc 0%, #9b59b6 50%, #c850c0 100%);
-  min-height: calc(100vh - 8px);
+  min-height:100vh;
   margin: 0;
+  background: linear-gradient(135deg, #5f6bdc 0%, #9b59b6 50%, #c850c0 100%);
 }
 ul{
   list-style: none;
   padding: 0;
   margin: 0;
 }
-*:focus-visible{
-  color: #5f6bdc;
+input:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+a:focus-visible {
   outline: 1px solid #5f6bdc;
   border-radius: 12px;
+}
+
+
+
+
+html {
+  scrollbar-gutter: stable;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+
+}
+
+.animation{
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+body.no-scroll,
+html.no-scroll {
+  overflow: hidden;
 }
