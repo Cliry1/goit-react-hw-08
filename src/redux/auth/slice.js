@@ -26,7 +26,7 @@ const authSlice = createSlice({
     isLoggedIn: false,
     isRefreshing: true,
     serverStatus:"idle",
-    refreshDone: false,
+    refreshDone: null,
   },
 
   reducers: {
@@ -61,7 +61,8 @@ const authSlice = createSlice({
         state.user.name = null;
         state.user.email = null;
         state.user.isPasswordSet = null;
-        state.refreshDone= false;
+        state.refreshDone = null;
+
       })
       .addCase(logout.pending, (state) => {
         state.isRefreshing = true;
@@ -88,17 +89,18 @@ const authSlice = createSlice({
 
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
+        state.refreshDone = "pending";
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
-        state.refreshDone = true;
+        state.refreshDone = "done";
       })
       .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;
         state.token = null;
-
+        state.refreshDone = "done";
       })
 
 
@@ -209,6 +211,7 @@ const authSlice = createSlice({
           state.serverStatus = "down";
           return;
         }
+        state.refreshDone = "idle";
         state.serverStatus = "ok";
       })
       .addCase(checkHealth.rejected, (state) => {

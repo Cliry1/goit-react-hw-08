@@ -11,8 +11,29 @@
   background: transparent;
   border: none; 
   transition: color 0.3s ease, transform 0.3s ease;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  display: flex;
+  height: 33px;
+  box-sizing: border-box;
+}
+.menuHidden{
+  display: none;
 }
 
+.menuButton{
+  display: none;
+}
+.container{
+  display: flex;
+  gap: 25px;
+}
+
+.logo{
+  height: 50px;
+}
+@media (min-width: 768px){
 .home::after,
 .contacts::after {
   content: "";
@@ -26,10 +47,13 @@
   transition: width 0.3s ease; 
 }
 
+.home::after{
+  left: 7%;
+}
 
 .home.active::after,
 .contacts.active::after {
-  width: 100%;
+  width: 91%;
 }
 
 
@@ -40,10 +64,83 @@
   transform: translateY(-3px);
   color: #5f6bdc;
 }
-
-.container{
-  display: flex;
-  gap: 25px;
 }
 
+@media  (max-width: 767px){
+  .container{
+    gap: 0;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+  }
+  .home{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .contacts{
+    display: none;
+  }
+  .menuIcon{
+    width: 100%;
+    height: 100%;
+    transition: color 0.3s ease;
+  }
+  .menuButton{
+    display: flex;
+    background: transparent;
+    border:none;
+    padding: 0;
+    width: 41px;
+    height: 41px;
+  }
+  .menuHidden{
+    opacity:0;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    position: absolute;
+    right:0;
+    top: 50px;
+    gap: 4px;
+    transition: all 0.3s ease;
+    padding: 24px;
+    min-width: 130px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    background: rgb(222, 222, 222);
+  }
+  .activeMenuIcon{
+    color:#007BFF;
+  }
+  .activeMenu li{
+    opacity:1;
+    pointer-events: auto;
+  }
 
+  .activeMenu{
+    opacity:1;
+    pointer-events: auto;
+    transform:translateY(10px);
+  }
+
+  .itemList{
+    text-decoration: none;
+    color:white;
+    font-weight: 500;
+    font-size: 16px;
+    background:transparent;
+    border:none;
+    padding: 0;
+    font-family: arial;
+  }
+  li {
+  padding: 12px 12px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #5f6bdc 0%, #9b59b6 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+}
+
+}

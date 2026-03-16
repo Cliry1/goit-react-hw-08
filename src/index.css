@@ -1,6 +1,7 @@
 body{
   min-height:100vh;
   margin: 0;
+  padding: 0;
   background: linear-gradient(135deg, #5f6bdc 0%, #9b59b6 50%, #c850c0 100%);
 }
 ul{

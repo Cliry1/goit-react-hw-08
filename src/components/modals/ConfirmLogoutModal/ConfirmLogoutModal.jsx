@@ -27,7 +27,9 @@ export const ConfirmLogoutModal = ({ onClose }) => {
     onClose();
   };
   return (
-    <ModalWrapper modalIsOpen={isOpen} closeModal={onClose}>
+    <ModalWrapper modalIsOpen={isOpen} closeModal={onClose} customStyles = {{content: {
+      padding:"0",
+    }}}>
       <div className={css.container}>
         <img
           className={css.img}

@@ -12,6 +12,7 @@ const contactsSlice = createSlice({
   initialState: {
     items:[],
     loading:false,
+    statusFetch:"idle",
   },
 
   extraReducers:(builder)=>{
@@ -20,6 +21,7 @@ const contactsSlice = createSlice({
     .addCase(fetchContacts.fulfilled, (state, action) =>{
       state.loading = false;
       state.items = action.payload;
+      state.statusFetch = "success";
     })
     .addCase(fetchContacts.rejected, handleRejected)
 
@@ -45,6 +47,7 @@ const contactsSlice = createSlice({
     .addCase(logout.fulfilled, state =>{
       state.loading=false;
       state.items = [];
+      state.statusFetch="idle";
     })
     .addCase(logout.pending, handlePending)
     .addCase(logout.rejected, handleRejected)

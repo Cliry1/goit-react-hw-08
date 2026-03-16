@@ -33,3 +33,12 @@
   color: #5f6bdc;
 }
 
+
+@media  (max-width: 767px){
+  .text{
+    display: none;
+  }
+  .button{
+    display: none;
+  }
+}

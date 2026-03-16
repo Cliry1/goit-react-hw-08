@@ -13,6 +13,14 @@
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
+
+
+.container{
+  display: flex;
+  gap: 25px;
+}
+
+@media (min-width: 768px){
 .register::after,
 .login::after {
   content: "";
@@ -39,8 +47,9 @@
   transform: translateY(-3px);
   color: #5f6bdc;
 }
-
-.container{
-  display: flex;
-  gap: 25px;
+}
+@media  (max-width: 767px){
+.register, .login{
+  display: none;
+}
 }

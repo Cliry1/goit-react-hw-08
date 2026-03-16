@@ -1,9 +1,10 @@
 import { Suspense } from 'react';
-
+import css from './Layout.module.css';
 import  {ModalManager}  from './ModalManager'
+
 export const Layout = ({ children }) => {
   return (
-    <div style={{ maxWidth: 1024, margin: '0 auto'}}>
+    <div className={css.layout}>
       <Suspense fallback={null}>{children}</Suspense>
       <ModalManager/>
     </div>

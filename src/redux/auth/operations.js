@@ -123,7 +123,7 @@ export const refreshUser = createAsyncThunk(
       const state = thunkAPI.getState();
       if (!state.auth.token) return false;
       if (state.auth.isRefreshing) return false;
-      if(state.auth.refreshDone) return false;
+      if(state.auth.refreshDone==="done") return false;
       return true;
     },
   },

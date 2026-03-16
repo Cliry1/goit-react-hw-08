@@ -144,7 +144,7 @@ export const ContactDetailsModal = ({ onClose, contact }) => {
       buttonCloseModal={true}
       customStyles={{
         content: {
-          padding: "30px 40px 30px",
+          padding: "0px",
         },
       }}
     >

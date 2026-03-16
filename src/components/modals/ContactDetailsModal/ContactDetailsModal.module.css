@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   min-width: 350px;
-  
+  padding: 30px 40px;
 }
+
 .buttonsContainer{
   display: flex;
   flex-direction: row;
@@ -65,30 +66,28 @@
   margin-left: 8px;
 }
 
+.inputActive, .inputUnactive{
+  padding: 6px 14px 6px 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
 .inputUnactive{
   border-color: transparent;
   background: #f7f7f7;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  padding: 6px 14px 6px 14px;
-  border-radius: 12px;
-  font-size: 15px;
   border: 1px solid #eee;
   cursor: not-allowed;
   color: #aaa;
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease ;
 }
 
 .inputActive{
-  padding: 6px 14px 6px 14px;
-  border-radius: 12px;
   border: 1px solid #ccc;
   outline: none;
   background: rgba(255,255,255,0.1);
-  font-size: 15px;
   color: #0f1720;
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
   
 .inputActive:hover, .inputActive:focus{
@@ -130,7 +129,7 @@
 
 .photo{
   position: relative;
-  display: 'block';
+  display: block;
   width: 100px;
   height: 100px;
   background-size: cover;
@@ -158,3 +157,33 @@
   pointer-events: none;
 }
 
+
+@media (max-width: 768px) {
+  .form{
+    min-width: 0px;
+    width: 300px;
+    padding: 16px;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+  .inputActive, .inputUnactive{
+    padding: 6px;
+    font-size: 14px;
+  }
+  .formContainer{
+    min-height: 74px;
+  }
+  .buttonActive{
+    font-size: 16px;
+  }
+  .buttonsContainer{
+    min-height: 60px;
+  }
+  .requiredTextContainer{
+    flex-direction: column;
+    gap: 0;
+  }
+  .error{
+    font-size: 13px;
+  }
+}

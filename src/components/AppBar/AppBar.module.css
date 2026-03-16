@@ -5,34 +5,63 @@
 }
 
 .container {
-  max-width: 1380px;
+  max-width: 1332px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;  
   font-size: 18px;
   transition: box-shadow .18s ease, transform .12s ease;
-  
-  
+  box-sizing: content-box;
 }
+
 .emptyBlock{
   height: 8px;
   width: 160%;
   background: linear-gradient(135deg, #5f6bdc 0%, #9b59b6 50%, #c850c0 100%); 
-
 }
 
 .appBar{
-  margin: 0 30px;
+  margin: 0 20px;
   padding: 14px 24px;
   background: rgb(222, 222, 222);
   -webkit-backdrop-filter: blur(1000px);
   backdrop-filter: blur(1000px);
-   box-shadow: 0 8px 24px rgba(12, 24, 35, 0.12);
-   border-radius: 12px;
-   border: 1px solid rgb(204, 204, 204);
-   min-height: 65px;
-   box-sizing: border-box;
-   
+  box-shadow: 0 8px 24px rgba(12, 24, 35, 0.12);
+  border-radius: 12px;
+
+  min-height: 65px;
+  box-sizing: border-box;
 }
 
+
+
+@media  (max-width: 1439px){
+  .container {
+    max-width: 916px;
+  }
+      .emptyBlock{
+    width: 200%;
+  }
+}
+@media  (max-width: 1023px){
+  .container {
+    max-width: 660px;
+  }
+    .emptyBlock{
+    width: 300%;
+  }
+}
+@media  (max-width: 767px){
+  .container {
+    max-width: 276px;
+  }
+  .appBar{
+    padding: 6px 12px;
+    margin: 0 10px;
+    min-height: 41px;
+  }
+  .emptyBlock{
+    width: 600%;
+  }
+}

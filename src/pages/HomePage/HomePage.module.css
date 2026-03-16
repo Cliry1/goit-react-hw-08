@@ -42,7 +42,9 @@
   outline: transparent;
 }
 .mainImg{
-  width: 250px;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 .imgList{
   width: 150px;
@@ -91,6 +93,76 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin: 0;
 } 
 
 
+.mainImgContainer{
+    width: 250px;
+    height: 250px;
+}
+
+@media  (max-width: 1023px){
+  .container{
+    max-width: 680px;
+    padding-left: 40px;
+    padding-right: 40px;
+  
+  }
+  .mainImgContainer{
+    width: 210px;
+    height: 210px;
+  }
+  .title{
+    font-size: 36px;
+  }
+  .listItem{
+    width: 140px;
+    height: 156px;
+    padding: 0;
+  }
+  .listItemText{
+    font-size: 14px;
+  }
+  .imgList{
+    width: 120px;
+  }
+  .button{
+    width: 180px;
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+}
+@media  (max-width: 767px){
+  .container{
+    max-width: 300px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+  
+  }
+  .mainImgContainer{
+    width: 230px;
+    height: 230px;
+  }
+  .title{
+    font-size: 34px;
+  }
+  .listItem{
+    width: 120px;
+  }
+  .button{
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+  .list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .mainContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}

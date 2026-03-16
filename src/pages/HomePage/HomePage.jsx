@@ -16,7 +16,9 @@ export default function HomePage() {
       <DocumentTitle>Home</DocumentTitle>
       <div className={`${css.container} animation`} >
         <div className={css.mainContent} >
+          <div className={css.mainImgContainer}>
           <img className={css.mainImg} src={img} alt="Background illustration for page" />
+          </div>
           <h1 className={css.title}>Your phonebook <br/>is waiting for you!</h1>
         </div>
         <button className={css.button} type="button" onClick={() => navigate("/contacts")}>Go to your contacts</button>

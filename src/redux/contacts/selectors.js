@@ -6,3 +6,5 @@ export const selectFilteredContacts = createSelector([selectContacts, selectName
   return tasks.filter((contact)=>contact.name.toLowerCase().includes(filter.toLowerCase()) || contact.phoneNumber.includes(filter))
 } )
 export const selectIsLoading = state=>state.contacts.loading;
+export const selectStatusFetch = state=>state.contacts.statusFetch;
+

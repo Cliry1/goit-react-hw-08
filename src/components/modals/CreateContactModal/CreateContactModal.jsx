@@ -13,7 +13,7 @@ export const CreateContactModal = ({ onClose }) => {
       buttonCloseModal={true}
       customStyles={{
         content: {
-          padding: "30px 40px 30px",
+          padding: "0px",
         },
       }}
     >

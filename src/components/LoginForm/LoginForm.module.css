@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 60px auto;
+  margin: 60px auto 0;
   width: 420px;
   padding: 36px 48px;
   background: rgba(255,255,255,0.72);
@@ -78,11 +78,11 @@
   color: rgba(15,23,36,0.85);
   text-decoration: none;
   cursor: pointer;
-  padding: 6px 0;
+  margin: 6px 0;
   font-size: 16px;
   transition: color 0.2s;
-
 }
+
 .forgotPasswordButton:hover{
   color: #5f6bdc;
 }
@@ -113,3 +113,46 @@
   cursor: pointer;
 }
 
+
+
+@media (max-width: 767px){
+.error{
+    font-size: 14px;
+  }
+  .form{
+    margin-top: 20px;
+    width: 300px;
+    padding: 24px;
+    box-sizing: border-box;
+    height:386px;
+  }
+
+  .button{
+    width: 180px;
+    padding: 10px 0;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  .container input{
+    padding: 10px 40px 10px 10px;
+    font-size: 14px;
+  }
+  .container label{
+    font-size: 14px;
+  }
+  .buttonHidden{
+    right: 8px;
+    top: 27px;
+    font-size: 22px;
+  }
+  .container{
+    height: 86px;
+}
+  .forgotPasswordButton{
+    font-size: 15px;
+    margin: 0;
+  }
+    .line{
+    margin: 10px 0 8px;
+  }
+}

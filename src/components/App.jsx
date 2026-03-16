@@ -4,6 +4,7 @@ import {
   selectIsRefreshing,
   selectServerStatus,
   selectToken,
+  selectIsRefreshDone,
 } from "../redux/auth/selectors";
 import { selectIsLoading } from "../redux/contacts/selectors";
 import { ServerError } from "../pages/ServerError/ServerError";
@@ -36,6 +37,8 @@ export default function App() {
   const token = useSelector(selectToken);
   const isLoading = useSelector(selectIsLoading);
   const serverStatus = useSelector(selectServerStatus);
+  const refreshDone = useSelector(selectIsRefreshDone);
+
 
 
   useEffect(() => {
@@ -55,16 +58,15 @@ export default function App() {
       }
     }
   }, [serverStatus, dispatch, token]);
-
-  if (serverStatus === "checking" || serverStatus === "idle") {
+  if (serverStatus === "checking" || serverStatus === "idle" || (refreshDone === "idle" && token) || refreshDone==="pending") {
     return <SpinnerLoading />;
   }
 
   if (serverStatus === "down") {
     return (
-      <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 16px" }}>
+      <Layout>
         <ServerError />
-      </div>
+      </Layout>
     );
   }
 
@@ -72,7 +74,7 @@ export default function App() {
     <>
       <Toaster
         toastOptions={{
-          duration: 6000,
+          duration: 4000,
           dismissible: true,
         }}
       />

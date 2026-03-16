@@ -49,7 +49,7 @@ export const SendResetPasswordEmailModal = ({
   };
 
   return (
-    <ModalWrapper modalIsOpen={isOpen} closeModal={onClose}>
+    <ModalWrapper modalIsOpen={isOpen} closeModal={onClose} customStyles={{content:{padding:0}}}>
       <form onSubmit={handleSubmit} className={css.container}>
         {setPasswordReason ? (
           <p className={css.text} >

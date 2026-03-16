@@ -79,3 +79,16 @@
   font-size: 20px;
   transition: 0.3s ease;
 }
+
+@media (max-width: 767px){
+  .containerButtons {
+    gap: 4px;
+  }
+  .button{
+    padding: 4px 12px;
+    font-size: 12px;
+  }
+  .containerBig {
+    gap: 8px;
+  }
+}

@@ -24,7 +24,9 @@ export const ConfirmDeleteModal = ({onClose, ...modalProps}) =>{
   };
   
   return(
-    <ModalWrapper modalIsOpen={isOpen} closeModal={onClose}>
+    <ModalWrapper modalIsOpen={isOpen} closeModal={onClose} customStyles = {{content: {
+      padding:"0",
+    }}}>
             <div className={css.container}>
               <img
                 className={css.img}
@@ -32,7 +34,7 @@ export const ConfirmDeleteModal = ({onClose, ...modalProps}) =>{
                 alt="Delete icon"
               />
               <h1 className={css.title}>
-                Are you sure you want <br /> to delete this contact?
+                Are you sure you want <br className={css.br}/> to delete this contact?
               </h1>
               <button className={`${css.button} ${css.deleteButton}`} onClick={handleDelete}>Yes</button>
               <button className={`${css.button} ${css.cancelButton}`} onClick={onClose}>No</button>

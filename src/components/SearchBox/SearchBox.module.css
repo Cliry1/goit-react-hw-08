@@ -1,6 +1,5 @@
 .container{
-  margin-top: 12px;
-  margin-bottom: 18px;
+
 }
 .text{
   margin: 0 0 12px 10px;
@@ -30,4 +29,22 @@
 }
 .input:focus{
   outline: none;
+}
+
+@media (max-width: 1023px){
+  .input{
+    width: 340px;
+    padding: 10px 20px 10px 12px;
+  }
+}
+
+@media (max-width: 767px){
+  .input{
+    width: 300px;
+    padding: 10px 20px 10px 12px;
+    box-sizing: border-box;
+  }
+  .text{
+    font-size: 20px;
+  }
 }
