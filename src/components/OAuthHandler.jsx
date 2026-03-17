@@ -24,7 +24,7 @@ export const OAuthHandler = ({ callback }) => {
         .catch((response)=>{
         toast.error(response.message)
       });
-        navigate("/");
+        navigate("/contacts");
       } catch (err) {
         navigate("/login");
       }

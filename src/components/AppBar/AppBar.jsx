@@ -10,7 +10,6 @@ export const AppBar = () => {
 
   return (
     <header className={css.header}>
-      <div className={css.emptyBlock}></div>
       <div className={css.appBar}>
         <div className={css.container}>
           <Navigation />

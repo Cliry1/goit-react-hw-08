@@ -48,3 +48,9 @@ body.no-scroll,
 html.no-scroll {
   overflow: hidden;
 }
+
+@media (max-width: 767px){
+  body{
+      min-height:0;
+  }
+}

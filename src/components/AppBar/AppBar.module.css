@@ -2,6 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
+
 }
 
 .container {
@@ -15,11 +16,6 @@
   box-sizing: content-box;
 }
 
-.emptyBlock{
-  height: 8px;
-  width: 160%;
-  background: linear-gradient(135deg, #5f6bdc 0%, #9b59b6 50%, #c850c0 100%); 
-}
 
 .appBar{
   margin: 0 20px;
@@ -29,7 +25,6 @@
   backdrop-filter: blur(1000px);
   box-shadow: 0 8px 24px rgba(12, 24, 35, 0.12);
   border-radius: 12px;
-
   min-height: 65px;
   box-sizing: border-box;
 }
@@ -40,17 +35,13 @@
   .container {
     max-width: 916px;
   }
-      .emptyBlock{
-    width: 200%;
-  }
+
 }
 @media  (max-width: 1023px){
   .container {
     max-width: 660px;
   }
-    .emptyBlock{
-    width: 300%;
-  }
+
 }
 @media  (max-width: 767px){
   .container {
@@ -61,7 +52,5 @@
     margin: 0 10px;
     min-height: 41px;
   }
-  .emptyBlock{
-    width: 600%;
-  }
+
 }
