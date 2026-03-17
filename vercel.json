@@ -3,6 +3,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://pet-proj-vjtd.onrender.com/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
