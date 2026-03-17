@@ -54,8 +54,8 @@ export const SendResetPasswordEmailModal = ({
         {setPasswordReason ? (
           <p className={css.text} >
             You are logged in via Google or GitHub.
-            <br />
-            To be able to log in the standard way, <br /> you need to add a password.
+            <br className={css.br}/>
+            To be able to log in the standard way, <br className={css.br}/> you need to add a password.
           </p>
         ) : (
           <p className={css.text}>Enter your email. A password <br />recovery message will be sent to it.</p>

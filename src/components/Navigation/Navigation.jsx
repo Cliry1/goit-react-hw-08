@@ -115,17 +115,17 @@ export const Navigation = () => {
         className={clsx(css.menuHidden, menuOpen && css.activeMenu)}
       >
         {isLoggedIn && (
-          <li>
-            <NavLink className={css.itemList} to="/contacts">
+          <li className={css.itemList}>
+            <NavLink className={css.itemListNav} to="/contacts">
               Contacts
             </NavLink>{" "}
           </li>
         )}
 
         {!password && isLoggedIn && (
-          <li>
+          <li className={css.itemList}>
             <button
-              className={css.itemList}
+              className={css.itemListNav}
               type="button"
               onClick={() => {
                 dispatch(
@@ -141,7 +141,7 @@ export const Navigation = () => {
           </li>
         )}
         {isLoggedIn && (
-          <li>
+          <li className={css.itemList}> 
             <button
               className={css.itemList}
               type="button"
@@ -154,15 +154,15 @@ export const Navigation = () => {
           </li>
         )}
         {!isLoggedIn && (
-          <li>
-            <NavLink className={css.itemList} to="/register">
+          <li className={css.itemList}>
+            <NavLink className={css.itemListNav} to="/register">
               Register
             </NavLink>
           </li>
         )}
         {!isLoggedIn && (
-          <li>
-            <NavLink className={css.itemList} to="/login">
+          <li className={css.itemList}>
+            <NavLink className={css.itemListNav} to="/login">
               Log In
             </NavLink>
           </li>

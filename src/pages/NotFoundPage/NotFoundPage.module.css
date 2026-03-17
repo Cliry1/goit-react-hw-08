@@ -22,9 +22,9 @@
   .container{
     max-width: 300px;
     margin: 70px auto;
+    min-height: 425px;
   }
-.text{
-  font-size: 22px;
-
-}
+  .text{
+    font-size: 22px;
+  }
 }
