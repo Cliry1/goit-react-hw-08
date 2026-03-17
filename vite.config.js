@@ -12,7 +12,6 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'https://pet-proj-vjtd.onrender.com',
-        // target: 'https:/localhost:3000',
         changeOrigin: true,
         secure: true,
         rewrite: (path) => path.replace(/^\/api/, ''),

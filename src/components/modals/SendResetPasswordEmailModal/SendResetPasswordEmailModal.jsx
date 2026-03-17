@@ -27,14 +27,14 @@ export const SendResetPasswordEmailModal = ({
     try {
       await schemaEmail.validate({ email }, { abortEarly: false });
       if (setPasswordReason) {
-        dispatch(sendSetPasswordEmail(email))
+        await dispatch(sendSetPasswordEmail(email))
           .unwrap()
           .then((response) => {
             toast.success(response.message);
           })
           .catch(() => {});
       } else {
-        dispatch(sendResetPasswordEmail(email))
+        await dispatch(sendResetPasswordEmail(email))
           .unwrap()
           .then((response) => {
             toast.success(response.message);
