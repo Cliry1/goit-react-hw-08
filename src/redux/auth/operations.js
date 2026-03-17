@@ -2,8 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { setServerDown } from "./slice";
 
-axios.defaults.baseURL = "https://pet-proj-vjtd.onrender.com";
-// axios.defaults.baseURL = "http://localhost:3000";
+
+axios.defaults.baseURL = '/api';
 
 const setAuthHeader = (accessToken) => {
   axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
