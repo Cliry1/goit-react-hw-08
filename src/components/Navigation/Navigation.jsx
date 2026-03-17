@@ -143,7 +143,7 @@ export const Navigation = () => {
         {isLoggedIn && (
           <li className={css.itemList}> 
             <button
-              className={css.itemList}
+              className={css.itemListNav}
               type="button"
               onClick={() => {
                 dispatch(openModal({ type: "CONFIRM_LOGOUT" }));
